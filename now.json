@@ -6,6 +6,6 @@
         { "src": "api/*.js", "use":"@now/node"}
     ],
     "routes": [
-        { "src": "/api/postcode.js", "methods": ["GET"] }
+        { "src": "/api/postcode", "dest":"/api/postcode.js" , "methods": ["GET"] }
     ]
 }
