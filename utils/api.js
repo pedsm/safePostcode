@@ -4,7 +4,7 @@ const { log, error } = console
 
 export async function fetchPoliceRecords(lat, lon) {
     try {
-        const resp = await get(`https://data.police.uk/api/crimes-at-location?lat=${lat}&lng=${lon}&date=2019-03`)
+        const resp = await get(`https://data.police.uk/api/crimes-at-location?lat=${lat}&lng=${lon}`)
         return resp.data
     } catch (e) {
         error(e)
@@ -14,7 +14,7 @@ export async function fetchPoliceRecords(lat, lon) {
 
 export async function fetchPostcodeInfo(postcode) {
     try {
-        const resp = await get(`https://api.postcodes.io/postcodes/${postcode}`)
+        const resp = await get(`https://postcodes.io/postcodes/${postcode}`)
         log('Postcode found')
         return resp.data.result
     } catch (e) {
