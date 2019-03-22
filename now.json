@@ -3,6 +3,9 @@
     "name": "safePostcode",
     "builds": [
         { "src": "next.config.js", "use": "@now/next" },
-        { "src": "api/postcode.js", "use": "@now/node" }
+        { "src": "api/*.js", "use":"@now/node"}
+    ],
+    "routes": [
+        { "src": "/api/postcode.js", "methods": ["GET"] }
     ]
 }
