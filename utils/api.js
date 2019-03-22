@@ -14,7 +14,7 @@ export async function fetchPoliceRecords(lat, lon) {
 
 export async function fetchPostcodeInfo(postcode) {
     try {
-        const resp = await get(`http://api.postcodes.io/postcodes/${postcode}`)
+        const resp = await get(`https://api.postcodes.io/postcodes/${postcode}`)
         log('Postcode found')
         return resp.data.result
     } catch (e) {

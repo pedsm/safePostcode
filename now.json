@@ -1,7 +1,8 @@
 {
     "version": 2,
-    "name": "nextjs",
+    "name": "safePostcode",
     "builds": [
-        { "src": "next.config.js", "use": "@now/next" }
+        { "src": "next.config.js", "use": "@now/next" },
+        { "src": "api/postcode.js", "use": "@now/node" }
     ]
 }
