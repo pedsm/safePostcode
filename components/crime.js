@@ -13,13 +13,9 @@ export default class Crime extends React.Component {
                 <div className="media-content">
                     <div className="content">
                         <p><strong>{this.cleanDashCase(crime.category)}</strong></p>
-                        <p>{crime.location.street.name}</p>
-                        {(() => {
-                            if (crime.outcome_status == null) {
-                                return (<p>No outcome avaliable</p>)
-                            }
-                            return (<p>{crime.outcome_status.category}</p>)
-                        })()}
+                        <p>{crime.location.street.name} <br />
+                            {crime.outcome_status == null ? "🔎 No outcome avaliable" : "🧐" + crime.outcome_status.category}
+                        </p>
                     </div>
                 </div>
             </article>
