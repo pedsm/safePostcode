@@ -1,4 +1,5 @@
 import React from 'react'
+import Crime from '../components/crime'
 import get from 'axios'
 
 const { log, error } = console
@@ -57,15 +58,15 @@ class Home extends React.Component {
 
     render() {
         return (
-            <div>
-                <h1>Safe postcode</h1>
-                <input onChange={ this.handleInput.bind(this) }  placeholder="postcode" />
-                {this.state.crimes.map((crime, i) => (
-                    <div key={i}>
-                        <p>{crime.category}</p>
-                    </div>
-                ))}
-            </div>
+            <section className="section">
+                <div className="container">
+                    <h1 className="title">Safe postcode</h1>
+                    <input className="input" onChange={this.handleInput.bind(this)} placeholder="postcode" />
+                    {this.state.crimes.map((crime, i) => (
+                        <Crime crime={crime} key={i} />
+                    ))}
+                </div>
+            </section>
         )
     }
 }
