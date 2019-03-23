@@ -1,6 +1,7 @@
 {
     "version": 2,
     "name": "safePostcode",
+    "regions": [ "lhr1" ],
     "builds": [
         { "src": "next.config.js", "use": "@now/next" }
     ]
