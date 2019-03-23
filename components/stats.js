@@ -12,7 +12,7 @@ export default class Level extends React.Component {
                         } else if (crimes.length == 0) {
                             return (<>No records found for <strong>{postcode.toUpperCase()}</strong></>)
                         }
-                        return (<><strong>{crimes.length}</strong> records found for <strong>{postcode.toUpperCase()}</strong></>)
+                        return (<><strong>{crimes.length}</strong>&nbsp;records found for <strong>{postcode.toUpperCase()}</strong></>)
                     })()}
                 </p>
             </nav>
