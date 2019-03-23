@@ -8,9 +8,24 @@ const { log, error } = console
 class Home extends React.Component {
     constructor(props) {
         super(props)
+        const { postcode, crimes } = props
         this.state = {
-            postcode: "",
-            crimes: []
+            postcode,
+            crimes
+        }
+    }
+
+    static async getInitialProps({ query }) {
+        const postcode = query.postcode || ""
+        const postcodeDetails = await fetchPostcodeInfo(postcode)
+        if(postcodeDetails == null) {
+            return { postcode, crimes: [] }
+        }
+        const { latitude, longitude } = postcodeDetails
+        const crimes = await fetchPoliceRecords(latitude, longitude)
+        return {
+            postcode,
+            crimes
         }
     }
 
@@ -33,7 +48,16 @@ class Home extends React.Component {
             <section className="section">
                 <div className="container">
                     <h1 className="title">👮🏻‍♀Safe postcode</h1>
-                    <input style={{ marginBottom: 10 }} className="input" onChange={this.handleInput.bind(this)} placeholder="postcode" />
+                    <form action="/" method="GET">
+                        <input 
+                            name="postcode"
+                            style={{ marginBottom: 10 }}
+                            className="input"
+                            onChange={this.handleInput.bind(this)}
+                            placeholder="postcode" 
+                            value={this.state.postcode}
+                        />
+                    </form>
                     <Stats crimes={this.state.crimes} postcode={this.state.postcode} />
                     {this.state.crimes.map((crime, i) => (
                         <Crime crime={crime} key={i} />
