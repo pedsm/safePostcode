@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { MONTHS_BACK } from '../config'
-import { prevXMonth } from './date'
+import { leftPad2with0, prevXMonth } from './date'
 const { log, error } = console
 
 export interface Crime {
@@ -44,7 +44,7 @@ export interface CrimeMonth {
 
 export async function fetchPoliceRecords(lat:number, lon:number):Promise<CrimeMonth[]> {
   const date = new Date()
-  const currentMonth = `${date.getUTCFullYear()}-${date.getMonth() + 1}`
+  const currentMonth = `${date.getUTCFullYear()}-${leftPad2with0(date.getMonth() + 1)}`
 
   try {
     const urls = new Array(MONTHS_BACK).fill(null)
