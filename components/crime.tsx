@@ -1,7 +1,8 @@
+import { ReactElement } from 'react'
 import { Crime } from '../utils/api'
 import { formatDate } from '../utils/date'
 
-function cleanDashCase(dashCase) {
+function cleanDashCase(dashCase:string):string {
   const s = dashCase.split('-').join(' ')
   return s[0].toUpperCase() + s.slice(1)
 }
@@ -10,8 +11,7 @@ interface Props {
   crime: Crime
 }
 
-export default function CrimeCard({ crime }:Props) {
-  console.log(crime)
+export default function CrimeCard({ crime }:Props): ReactElement {
   return (
     <article className="p-8 shadow-lg rounded-lg text-gray-700 overflow-hidden">
       <div>

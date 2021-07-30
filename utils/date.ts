@@ -11,7 +11,7 @@ export function prevMonth(dateStr:string):string {
 }
 
 export function prevXMonth(dateStr:string, n:number):string {
-  if(n == 0) {
+  if(n === 0) {
     return dateStr
   }
   return prevXMonth(prevMonth(dateStr), n-1)

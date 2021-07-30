@@ -1,25 +1,18 @@
 import { GetServerSideProps } from 'next'
-import { useState } from 'react'
-import { getCrimeData, useCrimeData } from '../utils/hooks'
+import { ReactElement, useState } from 'react'
+import { CrimeData, getCrimeData, useCrimeData } from '../utils/hooks'
 import Stats from '../components/stats'
 import CrimeMonth from '../components/crimeMonth'
-import { Postcode } from '../utils/api'
-
-interface Props {
-  postcode: string
-  postcodeData: Postcode
-  crimes: any
-}
 
 export const getServerSideProps:GetServerSideProps = async ({query}) => {
-  const { postcode } = query
+  const postcode = query.postcode as string
   if (postcode) {
-    const {postcodeData, crimes} = await getCrimeData(postcode)
+    const {postcodeData, crimeMonths} = await getCrimeData(postcode)
     return {
       props: {
         postcode,
         postcodeData,
-        crimes,
+        crimeMonths,
       }
     }
   }
@@ -28,7 +21,7 @@ export const getServerSideProps:GetServerSideProps = async ({query}) => {
   }
 }
 
-export default function Index(props:Props) {
+export default function Index(props:CrimeData): ReactElement {
   const [postcode, setPostcode] = useState(props.postcode || '')
   const { postcodeData, crimeMonths, loading } = useCrimeData(postcode, props)
 
