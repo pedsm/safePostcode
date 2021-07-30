@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-import { fetchPostcodeInfo, fetchPoliceRecords } from './api'
+import { fetchPostcodeInfo, fetchPoliceRecords, CrimeMonth, Postcode } from './api'
 
 export function useCrimeData(postcode, initialValue) {
   const [loading, setLoading] = useState(false)
-  const [postcodeData, setPostcodeData] = useState(initialValue.postcodeData || {})
-  const [crimeMonths, setCrimes] = useState(initialValue.crimes || [])
+  const [postcodeData, setPostcodeData] = useState<Postcode>(initialValue.postcodeData || {})
+  const [crimeMonths, setCrimes] = useState<CrimeMonth[]>(initialValue.crimes || [])
 
   useEffect(() => {
     async function fetchPostcode() {

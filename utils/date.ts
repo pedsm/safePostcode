@@ -1,4 +1,4 @@
-export function prevMonth(dateStr) {
+export function prevMonth(dateStr:string):string {
   const date = new Date(dateStr)
   const [month, year] = [date.getMonth() + 1, date.getFullYear()]
 
@@ -10,7 +10,7 @@ export function prevMonth(dateStr) {
   return `${year}-${leftPad2with0(newMonth)}`
 }
 
-export function prevXMonth(dateStr, n) {
+export function prevXMonth(dateStr:string, n:number):string {
   if(n == 0) {
     return dateStr
   }
@@ -18,7 +18,7 @@ export function prevXMonth(dateStr, n) {
 
 }
 
-function leftPad2with0(num) {
+function leftPad2with0(num:number):string {
   if(num > 9) {
     return `${num}`
   }
@@ -31,7 +31,7 @@ const months = ["January",
   "August", "September", "October", 
   "November", "December"];
 
-export function formatDate (dateStr) {
+export function formatDate(dateStr:string):string {
   const [year, month] = dateStr.split('-')
   return `${months[parseInt(month)]} ${year}`
 }

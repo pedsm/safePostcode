@@ -1,6 +1,14 @@
 import { MONTHS_BACK } from "../config"
+import { CrimeMonth, Postcode } from "../utils/api"
 
-export default function Stats({ crimeMonths, postcode, postcodeData, loading }) {
+interface Props {
+  crimeMonths: CrimeMonth[]
+  postcode: string,
+  postcodeData: Postcode
+  loading: boolean
+}
+
+export default function Stats({ crimeMonths, postcode, postcodeData, loading }:Props) {
   return (
     <nav>
       <p className="text-center mb-4">
