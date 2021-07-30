@@ -25,3 +25,13 @@ function leftPad2with0(num) {
   return `0${num}`
 
 }
+const months = ["January",
+ "February", "March", "April",
+  "May", "June", "July",
+  "August", "September", "October", 
+  "November", "December"];
+
+export function formatDate (dateStr) {
+  const [year, month] = dateStr.split('-')
+  return `${months[parseInt(month)]} ${year}`
+}

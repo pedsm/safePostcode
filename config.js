@@ -1,0 +1,1 @@
+export const MONTHS_BACK = 6
