@@ -1,5 +1,7 @@
 import { prevMonth, prevXMonth } from '../utils/date'
 
+// Fix this later, let's move to jest
+
 describe('date.js', () => {
   describe('prevMonth', () => {
     test('regular month', () => {

@@ -1,3 +1,4 @@
+import { Crime } from '../utils/api'
 import { formatDate } from '../utils/date'
 
 function cleanDashCase(dashCase) {
@@ -5,7 +6,11 @@ function cleanDashCase(dashCase) {
   return s[0].toUpperCase() + s.slice(1)
 }
 
-export default function Crime({ crime }) {
+interface Props {
+  crime: Crime
+}
+
+export default function CrimeCard({ crime }:Props) {
   console.log(crime)
   return (
     <article className="p-8 shadow-lg rounded-lg text-gray-700 overflow-hidden">

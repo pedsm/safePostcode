@@ -1,10 +1,17 @@
+import { GetServerSideProps } from 'next'
 import { useState } from 'react'
 import { getCrimeData, useCrimeData } from '../utils/hooks'
 import Stats from '../components/stats'
-import { formatDate } from '../utils/date'
-import Crime from '../components/crime'
+import CrimeMonth from '../components/crimeMonth'
+import { Postcode } from '../utils/api'
 
-export async function getServerSideProps({query}) {
+interface Props {
+  postcode: string
+  postcodeData: Postcode
+  crimes: any
+}
+
+export const getServerSideProps:GetServerSideProps = async ({query}) => {
   const { postcode } = query
   if (postcode) {
     const {postcodeData, crimes} = await getCrimeData(postcode)
@@ -21,7 +28,7 @@ export async function getServerSideProps({query}) {
   }
 }
 
-export default function Index(props) {
+export default function Index(props:Props) {
   const [postcode, setPostcode] = useState(props.postcode || '')
   const { postcodeData, crimeMonths, loading } = useCrimeData(postcode, props)
 
@@ -41,15 +48,7 @@ export default function Index(props) {
           </form>
           <Stats crimeMonths={crimeMonths} postcode={postcode} postcodeData={postcodeData} loading={loading}/>
           {crimeMonths.map((crimeMonth, i) => (
-            <section className="md:flex items-start">
-              <div className="md:w-2/6 sticky top-0 md:top-10 px-8 pt-1 py-4 bg-white backdrop-filter backdrop-blur-lg bg-opacity-30">
-                <h2 className="font-bold text-gray-800 text-4xl mt-8 mb-4">{formatDate(crimeMonth.month)}</h2>
-                <p className="md:mb-4 text-gray-600"><span className="font-bold">{crimeMonth.crimes.length}</span> crimes have been reported this month.</p>
-              </div>
-              <div className="md:w-4/6 mx-4 grid md:grid-cols-2 gap-8" key={i}>
-                {crimeMonth.crimes.map((crime, i) => (<Crime crime={crime} key={i}/>))}
-              </div>
-            </section>
+            <CrimeMonth crimeMonth={crimeMonth} key={i} />
           ))}
         </div>
       </section>
