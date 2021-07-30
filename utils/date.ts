@@ -18,7 +18,7 @@ export function prevXMonth(dateStr:string, n:number):string {
 
 }
 
-function leftPad2with0(num:number):string {
+export function leftPad2with0(num:number):string {
   if(num > 9) {
     return `${num}`
   }

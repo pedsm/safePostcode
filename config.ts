@@ -1,1 +1,1 @@
-export const MONTHS_BACK = 6
+export const MONTHS_BACK = 6 
