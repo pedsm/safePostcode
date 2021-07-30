@@ -38,28 +38,36 @@ export interface OutcomeStatus {
 export interface CrimeMonth {
   month: string
   crimes: Crime[]
+  monthDelta: number|null
 }
 
 
-export async function fetchPoliceRecords(lat, lon):Promise<CrimeMonth[]> {
+export async function fetchPoliceRecords(lat:number, lon:number):Promise<CrimeMonth[]> {
   const date = new Date()
   const currentMonth = `${date.getUTCFullYear()}-${date.getMonth() + 1}`
 
   try {
     const urls = new Array(MONTHS_BACK).fill(null)
-    const resp = await Promise.all(
+    const crimeMonths = await Promise.all<CrimeMonth>(
       urls.map(async (a, i) => {
         const month = prevXMonth(currentMonth, i + 1)
         const crimes = await axios.get<Crime[]>(`https://data.police.uk/api/crimes-at-location?date=${month}&lat=${lat}&lng=${lon}`)
         return {
           month,
-          crimes: crimes.data
+          crimes: crimes.data,
+          monthDelta: null
         }
       }
       )
     )
+    for(let i = 0; i < crimeMonths.length -1; i++) {
+      crimeMonths[i].monthDelta = (crimeMonths[i].crimes.length/crimeMonths[i+1].crimes.length) - 1
+      if(!Number.isFinite(crimeMonths[i].monthDelta)) {
+        crimeMonths[i].monthDelta = null
+      }
+    }
 
-    return resp
+    return crimeMonths
   } catch (e) {
     error(e)
     return []
@@ -109,7 +117,7 @@ export interface Codes {
 }
 
 
-export async function fetchPostcodeInfo(postcode):Promise<Postcode> {
+export async function fetchPostcodeInfo(postcode:string):Promise<Postcode|null> {
   try {
     const resp = await axios.get(`https://postcodes.io/postcodes/${postcode}`)
     log('Postcode found')

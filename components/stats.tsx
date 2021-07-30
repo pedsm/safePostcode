@@ -1,3 +1,4 @@
+import { ReactElement } from "react"
 import { MONTHS_BACK } from "../config"
 import { CrimeMonth, Postcode } from "../utils/api"
 
@@ -8,13 +9,13 @@ interface Props {
   loading: boolean
 }
 
-export default function Stats({ crimeMonths, postcode, postcodeData, loading }:Props) {
+export default function Stats({ crimeMonths, postcode, postcodeData, loading }:Props): ReactElement {
   return (
     <nav>
-      <p className="text-center mb-4">
+      <p className="text-center mb-4 text-gray-800">
         {(() => {
           if (loading) {
-            return 'Loading data...'
+            return 'Loading...'
           } else if (crimeMonths.length == 0 && postcode == '') {
             return 'Please enter your postcode'
           } else if (postcodeData == null) {
