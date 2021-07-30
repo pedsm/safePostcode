@@ -4,7 +4,7 @@ import { fetchPostcodeInfo, fetchPoliceRecords } from './api'
 export function useCrimeData(postcode, initialValue) {
   const [loading, setLoading] = useState(false)
   const [postcodeData, setPostcodeData] = useState(initialValue.postcodeData || {})
-  const [crimes, setCrimes] = useState(initialValue.crimes || [])
+  const [crimeMonths, setCrimes] = useState(initialValue.crimes || [])
 
   useEffect(() => {
     async function fetchPostcode() {
@@ -17,7 +17,7 @@ export function useCrimeData(postcode, initialValue) {
     fetchPostcode()
   }, [postcode])
 
-  return { postcodeData, crimes, loading }
+  return { postcodeData, crimeMonths, loading }
 }
 
 export async function getCrimeData(postcode) {

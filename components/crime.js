@@ -1,34 +1,23 @@
+import { formatDate } from '../utils/date'
+
 function cleanDashCase(dashCase) {
   const s = dashCase.split('-').join(' ')
   return s[0].toUpperCase() + s.slice(1)
 }
 
-const months = ["January",
- "February", "March", "April",
-  "May", "June", "July",
-  "August", "September", "October", 
-  "November", "December"];
-
-const formatDate = (dateStr) => {
-  const [year, month] = dateStr.split('-')
-  return `${months[parseInt(month)]} ${year}`
-}
-
 export default function Crime({ crime }) {
+  console.log(crime)
   return (
-    <article className="media">
-      <div className="media-content">
-        <div className="content">
-          <div className="level">
-            <div className="level-left">
-              <p><strong>{cleanDashCase(crime.category)}</strong></p>
-            </div>
-            <div className="level-rifth">
-              <p>{formatDate(crime.month)}</p>
-            </div>
+    <article className="p-8 shadow-lg rounded-lg text-gray-700 overflow-hidden">
+      <div>
+        <div>
+          <div>
+            <h2 className="font-bold text-xl">{cleanDashCase(crime.category)}</h2>
+            <p className="text-base">{formatDate(crime.month)}</p>
           </div>
           <p>{crime.location.street.name}</p>
-          <h6>Outcome:</h6>
+          <h3 className="text-xl font-bold mt-2">Outcome:</h3>
+          <p>{crime.outcome_status?.date}</p>
           {crime.outcome_status == null
             ? (<p>🔎 No outcome available</p>)
             : (
