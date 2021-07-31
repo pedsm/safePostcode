@@ -1,6 +1,6 @@
 # safePostcode
 
-![Safe Postcode](.github/screenshot.png)
+![Safe Postcode](.github/safepostcodev2.png)
 
 Safe Postcode is a demonstration of an API integration designed by [@pedsm](https://github.com/pedsm) and [@jonathanballs](https://github.com/jonathanballs) with the intention of making teaching the concept of APIs to programming students.
 
@@ -29,4 +29,4 @@ This is an intresting way of teaching begginers about what APIs can do in a way 
 
 - [React.js](https://reactjs.org/) - Frontend framework
 - [Next.js](https://nextjs.org/) - Server side rendering for React.js
-- [Zeit Now](https://zeit.co/now) - Serverless deployment service
+- [Vercel](https://vercel.com/) - Serverless deployment service
